@@ -31,4 +31,4 @@ and allows you to search for the weather in any city around the world.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/weather_app.git
+   https://github.com/king7amza/weather_app.git
