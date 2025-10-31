@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "weather_app (Chrome)",
+            "request": "launch",
+            "type": "dart",
+            "args": ["--web-hostname=127.0.0.1", "--web-port=5555"]
+        },
+        {
+            "name": "weather_app (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "weather_app (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
