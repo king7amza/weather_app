@@ -5,12 +5,12 @@ part 'current_weather_state.dart';
 
 class CurrentWeatherCubit extends Cubit<CurrentWeatherState> {
   CurrentWeatherCubit() : super(CurrentWeatherInitial());
-  final CurrentWeatherServices currentWeatherServices =
-      CurrentWeatherServices();
-  Future<void> getCurrentWeather() async {
+  final GetWeatherUsingCoordServices currentWeatherServices =
+      GetWeatherUsingCoordServices();
+  Future<void> getCurrentWeather({double? lat, double? lon}) async {
     emit(CurrentWeatherLoading());
     try {
-      final response = await currentWeatherServices.getCurrentWeather();
+      final response = await currentWeatherServices.getCurrentWeather(lat: lat, lon: lon);
       final currentWeatherResponse = CurrentWeatherResponseModel.fromMap(
         response.data,
       );

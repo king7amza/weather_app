@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/core/app_constants.dart';
 
-class CurrentWeatherServices {
+class GetWeatherUsingCoordServices {
   final LocationSettings locationSettings = LocationSettings(
     accuracy: LocationAccuracy.high,
     distanceFilter: 100,
@@ -32,18 +32,18 @@ class CurrentWeatherServices {
     return true;
   }
 
-  Future<Response<dynamic>> getCurrentWeather() async {
+  Future<Response<dynamic>> getCurrentWeather({double? lat, double? lon}) async {
     try {
       await _handelLocationPermission();
       Position position = await Geolocator.getCurrentPosition(
         locationSettings: locationSettings,
       );
-      final lat = position.latitude;
-      final lon = position.longitude;
+      final currentLat = lat ?? position.latitude;
+      final currentLon = lon ?? position.longitude;
       aDio.options.baseUrl = AppConstants.baseUrl;
       final Response<dynamic> response = await aDio.get(
         AppConstants.currentCityWeatherEndpoint,
-        queryParameters: {"lat": lat, "lon": lon, "appid": AppConstants.apiKey},
+        queryParameters: {"lat": currentLat, "lon": currentLon, "appid": AppConstants.apiKey},
       );
       if (response.statusCode == 200) {
         return response;
