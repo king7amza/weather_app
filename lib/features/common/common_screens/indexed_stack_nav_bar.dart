@@ -4,6 +4,7 @@ import 'package:weather_app/core/utils/themes/app_colors.dart';
 import 'package:weather_app/features/home/views/screens/home_screen.dart';
 import 'package:weather_app/features/home/views_models/current_weather_cubit/current_weather_cubit.dart';
 import 'package:weather_app/features/profile/views/screens/profile_screen.dart';
+import 'package:weather_app/features/search/view_models/search_cubit/search_cubit.dart';
 import 'package:weather_app/features/search/views/screens/search_screen.dart';
 
 class IndexedStackNavBar extends StatefulWidget {
@@ -24,23 +25,40 @@ class IndexedStackNavBarState extends State<IndexedStackNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        final currentWeatherCubit = CurrentWeatherCubit();
-        currentWeatherCubit.getCurrentWeather();
-        return currentWeatherCubit;
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) {
+            final currentWeatherCubit = CurrentWeatherCubit();
+            currentWeatherCubit.getCurrentWeather();
+            return currentWeatherCubit;
+          },
+        ),
+        BlocProvider(create: (context) => SearchCubit()),
+      ],
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              AppColors.primaryColor,
-              AppColors.secondaryColor,
-            ],
-        )),
+            colors: [AppColors.primaryColor, AppColors.secondaryColor],
+          ),
+        ),
         child: Scaffold(
+          extendBodyBehindAppBar: currentIndex == 1 ? true : false,
+          appBar: currentIndex == 1
+              ? AppBar(
+                  backgroundColor: AppColors.transparent,
+                  title: Text(
+                    'Search',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.headlineLarge!.copyWith(color: AppColors.white),
+                  ),
+                  centerTitle: true,
+                  elevation: 0,
+                )
+              : null,
           backgroundColor: AppColors.transparent,
           body: IndexedStack(
             index: currentIndex,
@@ -72,7 +90,10 @@ class IndexedStackNavBarState extends State<IndexedStackNavBar> {
                 ),
                 type: BottomNavigationBarType.fixed,
                 items: const [
-                  BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: 'Home',
+                  ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.search),
                     label: 'Search',
