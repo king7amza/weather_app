@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/utils/themes/app_colors.dart';
-import 'package:weather_app/features/common/common_screens/shimmer_eff.dart';
+import 'package:weather_app/features/common/common_screens/common_shimmer_eff.dart';
 import 'package:weather_app/features/home/models/custom_weather_icons_model.dart';
 import 'package:weather_app/features/home/views_models/current_weather_cubit/current_weather_cubit.dart';
 
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           current is CurrentWeatherError,
       builder: (context, state) {
         if (state is CurrentWeatherLoading) {
-          return const Center(child: ShimmerEff());
+          return const Center(child: CommonShimmerEff());
         } else if (state is CurrentWeatherError) {
           return Padding(
             padding: EdgeInsets.all(size.width * 0.1),
@@ -94,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                             currentWeather.main!.tempMax == null
                                 ? SizedBox.shrink()
                                 : Text(
-                                    "Max : ${currentWeather.main!.tempMax} °C",
+                                    "Max : ${((currentWeather.main!.tempMax)! - 273.15).toStringAsFixed(1)} °C",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineSmall!
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                             currentWeather.main!.tempMin == null
                                 ? SizedBox.shrink()
                                 : Text(
-                                    "Min : ${currentWeather.main!.tempMin} °C",
+                                    "Min : ${((currentWeather.main!.tempMin)! - 273.15).toStringAsFixed(1)} °C",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineSmall!

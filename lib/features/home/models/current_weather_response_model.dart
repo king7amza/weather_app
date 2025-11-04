@@ -107,12 +107,12 @@ class Coord {
     return <String, dynamic>{'lon': lon, 'lat': lat};
   }
 
-  factory Coord.fromMap(Map<String, dynamic> map) {
-    return Coord(
-      lon: map['lon'] != null ? map['lon'] as double : null,
-      lat: map['lat'] != null ? map['lat'] as double : null,
-    );
-  }
+factory Coord.fromMap(Map<String, dynamic> map) {
+  return Coord(
+    lon: map['lon'] != null ? (map['lon'] as num).toDouble() : null,
+    lat: map['lat'] != null ? (map['lat'] as num).toDouble() : null,
+  );
+}
 
   String toJson() => json.encode(toMap());
 
@@ -188,18 +188,18 @@ class Main {
     };
   }
 
-  factory Main.fromMap(Map<String, dynamic> map) {
-    return Main(
-      temp: map['temp'] != null ? map['temp'] as double : null,
-      feelsLike: map['feelsLike'] != null ? map['feelsLike'] as double : null,
-      tempMin: map['tempMin'] != null ? map['tempMin'] as double : null,
-      tempMax: map['tempMax'] != null ? map['tempMax'] as double : null,
-      pressure: map['pressure'] != null ? map['pressure'] as int : null,
-      humidity: map['humidity'] != null ? map['humidity'] as int : null,
-      seaLevel: map['seaLevel'] != null ? map['seaLevel'] as double : null,
-      grndLevel: map['grndLevel'] != null ? map['grndLevel'] as double : null,
-    );
-  }
+factory Main.fromMap(Map<String, dynamic> map) {
+  return Main(
+    temp: map['temp'] != null ? (map['temp'] as num).toDouble() : null,
+    feelsLike: map['feelsLike'] != null ? (map['feelsLike'] as num).toDouble() : null,
+    tempMin: map['tempMin'] != null ? (map['tempMin'] as num).toDouble() : null,
+    tempMax: map['tempMax'] != null ? (map['tempMax'] as num).toDouble() : null,
+    pressure: map['pressure'] != null ? map['pressure'] as int : null,
+    humidity: map['humidity'] != null ? map['humidity'] as int : null,
+    seaLevel: map['seaLevel'] != null ? (map['seaLevel'] as num).toDouble() : null,
+    grndLevel: map['grndLevel'] != null ? (map['grndLevel'] as num).toDouble() : null,
+  );
+}
 
   String toJson() => json.encode(toMap());
 
@@ -218,13 +218,13 @@ class Wind {
     return <String, dynamic>{'speed': speed, 'deg': deg, 'gust': gust};
   }
 
-  factory Wind.fromMap(Map<String, dynamic> map) {
-    return Wind(
-      speed: map['speed'] != null ? map['speed'] as double : null,
-      deg: map['deg'] != null ? map['deg'] as int : null,
-      gust: map['gust'] != null ? map['gust'] as double : null,
-    );
-  }
+factory Wind.fromMap(Map<String, dynamic> map) {
+  return Wind(
+    speed: map['speed'] != null ? (map['speed'] as num).toDouble() : null,
+    deg: map['deg'] != null ? map['deg'] as int : null,
+    gust: map['gust'] != null ? (map['gust'] as num).toDouble() : null,
+  );
+}
 
   String toJson() => json.encode(toMap());
 
@@ -241,9 +241,9 @@ class Rain {
     return <String, dynamic>{'the1h': the1h};
   }
 
-  factory Rain.fromMap(Map<String, dynamic> map) {
-    return Rain(the1h: map['the1h'] != null ? map['the1h'] as double : null);
-  }
+factory Rain.fromMap(Map<String, dynamic> map) {
+  return Rain(the1h: map['the1h'] != null ? (map['the1h'] as num).toDouble() : null);
+}
 
   String toJson() => json.encode(toMap());
 
