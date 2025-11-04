@@ -7,8 +7,8 @@ import 'package:weather_app/features/home/views_models/current_weather_cubit/cur
 import 'package:weather_app/features/search/models/search_api_response.dart';
 
 class WeatherHorizontalItem extends StatelessWidget {
-  final Weather cityWeather;
-  const WeatherHorizontalItem({super.key, required this.cityWeather});
+  final Weather searchedCityWeather;
+  const WeatherHorizontalItem({super.key, required this.searchedCityWeather});
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +46,12 @@ class WeatherHorizontalItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        cityWeather.state ?? '',
+                        searchedCityWeather.state ?? '',
                         style: Theme.of(context).textTheme.headlineSmall!
                             .copyWith(color: AppColors.white),
                       ),
                       Text(
-                        cityWeather.name ?? '',
+                        searchedCityWeather.name ?? '',
                         style: Theme.of(context).textTheme.headlineLarge!
                             .copyWith(color: AppColors.white),
                       ),

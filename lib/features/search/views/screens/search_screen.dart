@@ -155,7 +155,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     );
                                   },
                                   child: WeatherHorizontalItem(
-                                    cityWeather: cityWeather,
+                                    searchedCityWeather: cityWeather,
                                   ),
                                 ),
                               );
