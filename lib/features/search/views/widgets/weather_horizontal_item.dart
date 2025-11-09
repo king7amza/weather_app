@@ -25,7 +25,7 @@ class WeatherHorizontalItem extends StatelessWidget {
         } else if (state is CurrentWeatherLoaded) {
           final currentWeather = state.currentWeatherResponse.weather![0];
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20,),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
@@ -37,45 +37,50 @@ class WeatherHorizontalItem extends StatelessWidget {
                   end: Alignment.centerRight,
                 ),
               ),
-              height: 140,
+              height: 150,
               width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        searchedCityWeather.state ?? '',
-                        style: Theme.of(context).textTheme.headlineSmall!
-                            .copyWith(color: AppColors.white),
-                      ),
-                      Text(
-                        searchedCityWeather.name ?? '',
-                        style: Theme.of(context).textTheme.headlineLarge!
-                            .copyWith(color: AppColors.white),
-                      ),
-                      Text(
-                        currentWeather.main ?? '',
-                        style: Theme.of(context).textTheme.headlineSmall!
-                            .copyWith(color: AppColors.white),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: 150,
-                    height: 180,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Image.network(
-                        CustomWeatherIconsModel.getWeatherIcon(
-                          currentWeather.icon,
-                        ),
-                        fit: BoxFit.fill,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            searchedCityWeather.state ?? '',
+                            style: Theme.of(context).textTheme.headlineSmall!
+                                .copyWith(color: AppColors.white),
+                          ),
+                          Text(
+                            searchedCityWeather.name ?? '',
+                            style: Theme.of(context).textTheme.headlineLarge!
+                                .copyWith(color: AppColors.white),
+                          ),
+                          Text(
+                            currentWeather.main ?? '',
+                            style: Theme.of(context).textTheme.headlineSmall!
+                                .copyWith(color: AppColors.white),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      width: 150,
+                      height: 150,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.network(
+                          CustomWeatherIconsModel.getWeatherIcon(
+                            currentWeather.icon,
+                          ),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

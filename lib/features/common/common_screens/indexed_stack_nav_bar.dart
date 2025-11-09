@@ -59,6 +59,7 @@ class IndexedStackNavBarState extends State<IndexedStackNavBar> {
                   elevation: 0,
                 )
               : null,
+          resizeToAvoidBottomInset: false,
           backgroundColor: AppColors.transparent,
           body: IndexedStack(
             index: currentIndex,

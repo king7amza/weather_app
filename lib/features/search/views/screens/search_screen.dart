@@ -6,6 +6,7 @@ import 'package:weather_app/features/home/views_models/current_weather_cubit/cur
 import 'package:weather_app/features/search/view_models/search_cubit/search_cubit.dart';
 import 'package:weather_app/features/search/views/widgets/weather_horizontal_item.dart';
 import 'package:weather_app/features/search/views/widgets/weather_item_details.dart';
+import 'package:weather_app/features/search/views/widgets/weather_search_bar.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -15,7 +16,9 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final searchController = TextEditingController();
+  final cityController = TextEditingController();
+  final countryController = TextEditingController();
+  final stateController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final SearchCubit searchCubit = BlocProvider.of<SearchCubit>(context);
@@ -28,35 +31,13 @@ class _SearchScreenState extends State<SearchScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
                 children: [
-                  TextField(
-                    controller: searchController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      hintText: 'Search City',
-                      hintStyle: const TextStyle(color: AppColors.grey),
-                      label: const Text('Search City'),
-                      labelStyle: const TextStyle(color: AppColors.grey),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DecoratedBox(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.grey,
-                          ),
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.search,
-                              color: AppColors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  WeatherSearchBar(
+                    cityController: cityController,
+                    countryController: countryController,
+                    stateController: stateController,
+                    searchCubit: searchCubit,
+                    searchBackgroundColor: AppColors.grey,
+                    onPressed: () {},
                   ),
                   const SizedBox(height: 20),
                   Expanded(child: const Center(child: CommonShimmerEff())),
@@ -69,52 +50,31 @@ class _SearchScreenState extends State<SearchScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
                 children: [
-                  TextField(
-                    controller: searchController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      hintText: 'Search City',
-                      hintStyle: const TextStyle(color: AppColors.grey),
-                      label: const Text('Search City'),
-                      labelStyle: const TextStyle(color: AppColors.grey),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DecoratedBox(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.primaryColor,
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              searchController.text.isEmpty ||
-                                      searchController.text == ''
-                                  ? null
-                                  : searchCubit.searchCity(
-                                      searchController.text,
-                                    );
-                            },
-                            icon: const Icon(
-                              Icons.search,
-                              color: AppColors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  WeatherSearchBar(
+                    cityController: cityController,
+                    countryController: countryController,
+                    stateController: stateController,
+                    searchCubit: searchCubit,
+                    searchBackgroundColor: AppColors.primaryColor,
+                    onPressed: () {
+                      final String searchText =
+                          "${cityController.text},${stateController.text},${countryController.text}";
+                      cityController.text.isEmpty || cityController.text == ''
+                          ? null
+                          : searchCubit.searchCity(searchText);
+                    },
                   ),
                   const SizedBox(height: 20),
                   weathers.isEmpty
                       ? Padding(
-                        padding: const EdgeInsets.only(top:50.0),
-                        child: Column(
+                          padding: const EdgeInsets.only(top: 50.0),
+                          child: Column(
                             children: [
                               Text(
                                 "No City Found",
-                                style: Theme.of(context).textTheme.headlineLarge!
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineLarge!
                                     .copyWith(color: AppColors.white),
                               ),
                               const SizedBox(height: 20),
@@ -126,7 +86,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                             ],
                           ),
-                      )
+                        )
                       : Expanded(
                           child: ListView.builder(
                             itemCount: weathers.length,
@@ -149,8 +109,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             WeatherItemDetails(
-                                          cityWeather: cityWeather,
-                                        ),
+                                              cityWeather: cityWeather,
+                                            ),
                                       ),
                                     );
                                   },
@@ -171,42 +131,19 @@ class _SearchScreenState extends State<SearchScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextField(
-                    controller: searchController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      hintText: 'Search City',
-                      hintStyle: const TextStyle(color: AppColors.grey),
-                      label: const Text('Search City'),
-                      labelStyle: const TextStyle(color: AppColors.grey),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DecoratedBox(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.primaryColor,
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              searchController.text.isEmpty ||
-                                      searchController.text == ''
-                                  ? null
-                                  : searchCubit.searchCity(
-                                      searchController.text,
-                                    );
-                            },
-                            icon: const Icon(
-                              Icons.search,
-                              color: AppColors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  WeatherSearchBar(
+                    cityController: cityController,
+                    countryController: countryController,
+                    stateController: stateController,
+                    searchCubit: searchCubit,
+                    searchBackgroundColor: AppColors.primaryColor,
+                    onPressed: () {
+                      final String searchText =
+                          "${cityController.text},${stateController.text},${countryController.text}";
+                      cityController.text.isEmpty || cityController.text == ''
+                          ? null
+                          : searchCubit.searchCity(searchText);
+                    },
                   ),
                   Expanded(
                     child: Column(
@@ -232,42 +169,19 @@ class _SearchScreenState extends State<SearchScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
                 children: [
-                  TextField(
-                    controller: searchController,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      ),
-                      hintText: 'Search City',
-                      hintStyle: const TextStyle(color: AppColors.grey),
-                      label: const Text('Search City'),
-                      labelStyle: const TextStyle(color: AppColors.grey),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DecoratedBox(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.primaryColor,
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              searchController.text.isEmpty ||
-                                      searchController.text == ''
-                                  ? null
-                                  : searchCubit.searchCity(
-                                      searchController.text,
-                                    );
-                            },
-                            icon: const Icon(
-                              Icons.search,
-                              color: AppColors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  WeatherSearchBar(
+                    cityController: cityController,
+                    countryController: countryController,
+                    stateController: stateController,
+                    searchCubit: searchCubit,
+                    searchBackgroundColor: AppColors.primaryColor,
+                    onPressed: () {
+                      final String searchText =
+                          "${cityController.text},${stateController.text},${countryController.text}";
+                      cityController.text.isEmpty || cityController.text == ''
+                          ? null
+                          : searchCubit.searchCity(searchText);
+                    },
                   ),
                   const SizedBox(height: 20),
                   Expanded(
