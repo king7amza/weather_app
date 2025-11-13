@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/utils/themes/app_colors.dart';
 import 'package:weather_app/features/common/common_screens/common_shimmer_eff.dart';
 import 'package:weather_app/features/home/models/custom_weather_icons_model.dart';
+import 'package:weather_app/features/home/views/widgets/carousel_highlights_widget.dart';
 import 'package:weather_app/features/home/views_models/current_weather_cubit/current_weather_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -44,86 +45,93 @@ class HomeScreen extends StatelessWidget {
           );
         } else if (state is CurrentWeatherLoaded) {
           final currentWeather = state.currentWeatherResponse;
-          debugPrint(" icon = ${currentWeather.weather!.first.icon}");
           return SafeArea(
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: size.width * 0.05,
-                right: size.width * 0.05,
-                top: size.width * 0.1,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
+            child: SingleChildScrollView(
+              child: Container(
+                width: size.width,
+                height: size.height,
+                color: AppColors.transparent,
+                child: Stack(
                   children: [
-                    Text(
-                      "${currentWeather.name}",
-                      style: Theme.of(context).textTheme.headlineLarge!
-                          .copyWith(color: AppColors.white),
-                    ),
-                    SizedBox(height: size.width * 0.1),
-                    SizedBox(
-                      width: size.width * 0.7,
-                      height: size.width * 0.7,
-                      child: Image.network(
-                        CustomWeatherIconsModel.getWeatherIcon(
-                          currentWeather.weather!.first.icon,
-                        ),
-                        fit: BoxFit.contain,
+                    Positioned(
+                      top: size.width * 0.1,
+                      left: size.width * 0.1,
+                      right: size.width * 0.1,
+                      child: Column(
+                        children: [
+                          Container(
+                            width: size.width * 0.7,
+                            height: size.height * 0.07,
+                            decoration: BoxDecoration(
+                              color: AppColors.secondaryColor,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "${currentWeather.name}",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineLarge!
+                                    .copyWith(color: AppColors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: size.width * 0.7,
+                            height: size.width * 0.7,
+                            child: Image.network(
+                              CustomWeatherIconsModel.getWeatherIcon(
+                                currentWeather.weather!.first.icon,
+                              ),
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                ((currentWeather.main!.temp)! - 273.15)
+                                    .toStringAsFixed(1),
+                                style: Theme.of(context).textTheme.displayLarge!
+                                    .copyWith(color: AppColors.white),
+                              ),
+                              Text(
+                                "°C",
+                                style: Theme.of(context).textTheme.displayLarge!
+                                    .copyWith(color: AppColors.gold),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: size.width * 0.06),
+                          Text(
+                            "${currentWeather.weather!.first.main}",
+                            style: Theme.of(context).textTheme.headlineLarge!
+                                .copyWith(color: AppColors.white),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(height: size.width * 0.1),
-                    Text(
-                      "${((currentWeather.main!.temp)! - 273.15).toStringAsFixed(1)} °C",
-                      style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                        color: AppColors.white,
+                    Positioned(
+                      top: size.height * 0.6,
+                      left: size.width * 0.05,
+                      right: size.width * 0.05,
+                      child: Text(
+                        "Today’s Highlights",
+                        style: Theme.of(context).textTheme.headlineLarge!
+                            .copyWith(color: AppColors.white),
                       ),
                     ),
-                    SizedBox(height: size.width * 0.06),
-                    Text(
-                      "${currentWeather.weather!.first.main}",
-                      style: Theme.of(context).textTheme.headlineLarge!
-                          .copyWith(color: AppColors.white),
-                    ),
-                    SizedBox(height: size.width * 0.06),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            currentWeather.main!.tempMax == null
-                                ? SizedBox.shrink()
-                                : Text(
-                                    "Max : ${((currentWeather.main!.tempMax)! - 273.15).toStringAsFixed(1)} °C",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall!
-                                        .copyWith(color: AppColors.white),
-                                  ),
-                            currentWeather.main!.tempMin == null
-                                ? SizedBox.shrink()
-                                : Text(
-                                    "Min : ${((currentWeather.main!.tempMin)! - 273.15).toStringAsFixed(1)} °C",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall!
-                                        .copyWith(color: AppColors.white),
-                                  ),
-                          ],
+                    Positioned(
+                      top: size.height * 0.66,
+                      left: size.width * 0.1,
+                      right: size.width * 0.1,
+                      child: SizedBox(
+                        height: size.height * 0.26,
+                        width: size.width,
+                        child: CarouselHighlightsWidget(
+                          currentWeather: currentWeather,
                         ),
-                        SizedBox(height: size.width * 0.06),
-                        Text(
-                          "Wind : ${currentWeather.wind!.speed} m/s",
-                          style: Theme.of(context).textTheme.headlineSmall!
-                              .copyWith(color: AppColors.white),
-                        ),
-                        SizedBox(height: size.width * 0.06),
-                        Text(
-                          "Humidity : ${currentWeather.main!.humidity} %",
-                          style: Theme.of(context).textTheme.headlineSmall!
-                              .copyWith(color: AppColors.white),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
@@ -144,3 +152,23 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+/*
+CarouselSlider(
+  options: CarouselOptions(height: 400.0),
+  items: [1,2,3,4,5].map((i) {
+    return Builder(
+      builder: (BuildContext context) {
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.symmetric(horizontal: 5.0),
+          decoration: BoxDecoration(
+            color: Colors.amber
+          ),
+          child: Text('text $i', style: TextStyle(fontSize: 16.0),)
+        );
+      },
+    );
+  }).toList(),
+)
+ */
