@@ -114,7 +114,7 @@ class WeatherSearchBar extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                       borderSide: BorderSide.none,
                     ),
-                    hintText: 'Enter State or ISO code',
+                    hintText: 'Enter State',
                     hintStyle: const TextStyle(color: AppColors.grey),
                   ),
                 ),

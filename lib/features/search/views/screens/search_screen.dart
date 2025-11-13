@@ -91,32 +91,45 @@ class _SearchScreenState extends State<SearchScreen> {
                           child: ListView.builder(
                             itemCount: weathers.length,
                             itemBuilder: (context, index) {
-                              final cityWeather = weathers[index];
+                              final cityDetails = weathers[index];
                               return BlocProvider(
                                 create: (context) {
                                   final currentWeatherCubit =
                                       CurrentWeatherCubit();
                                   currentWeatherCubit.getCurrentWeather(
-                                    lat: cityWeather.lat,
-                                    lon: cityWeather.lon,
+                                    lat: cityDetails.lat,
+                                    lon: cityDetails.lon,
                                   );
                                   return currentWeatherCubit;
                                 },
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            WeatherItemDetails(
-                                              cityWeather: cityWeather,
-                                            ),
+                                child: Builder(
+                                  builder: (context) {
+                                    final currentWeatherCubit =
+                                        CurrentWeatherCubit();
+                                    currentWeatherCubit.getCurrentWeather(
+                                      lat: cityDetails.lat,
+                                      lon: cityDetails.lon,
+                                    );
+                                    return InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                BlocProvider.value(
+                                                  value: currentWeatherCubit,
+                                                  child: WeatherItemDetails(
+                                                    cityDetails: cityDetails,
+                                                  ),
+                                                ),
+                                          ),
+                                        );
+                                      },
+                                      child: WeatherHorizontalItem(
+                                        searchedCityDetails: cityDetails,
                                       ),
                                     );
                                   },
-                                  child: WeatherHorizontalItem(
-                                    searchedCityWeather: cityWeather,
-                                  ),
                                 ),
                               );
                             },

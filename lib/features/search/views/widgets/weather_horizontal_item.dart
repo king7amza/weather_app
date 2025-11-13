@@ -7,8 +7,8 @@ import 'package:weather_app/features/home/views_models/current_weather_cubit/cur
 import 'package:weather_app/features/search/models/search_api_response.dart';
 
 class WeatherHorizontalItem extends StatelessWidget {
-  final Weather searchedCityWeather;
-  const WeatherHorizontalItem({super.key, required this.searchedCityWeather});
+  final Weather searchedCityDetails;
+  const WeatherHorizontalItem({super.key, required this.searchedCityDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,9 @@ class WeatherHorizontalItem extends StatelessWidget {
         if (state is CurrentWeatherLoading) {
           return const Center(child: SingleWeatherShimmerEff());
         } else if (state is CurrentWeatherLoaded) {
-          final currentWeather = state.currentWeatherResponse.weather![0];
+          final currentWeather = state.currentWeatherResponse;
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20,),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
@@ -49,35 +49,43 @@ class WeatherHorizontalItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            searchedCityWeather.state ?? '',
+                            searchedCityDetails.state ?? '',
                             style: Theme.of(context).textTheme.headlineSmall!
                                 .copyWith(color: AppColors.white),
                           ),
                           Text(
-                            searchedCityWeather.name ?? '',
+                            searchedCityDetails.name ?? '',
                             style: Theme.of(context).textTheme.headlineLarge!
                                 .copyWith(color: AppColors.white),
                           ),
                           Text(
-                            currentWeather.main ?? '',
+                            currentWeather.weather![0].main ?? '',
                             style: Theme.of(context).textTheme.headlineSmall!
                                 .copyWith(color: AppColors.white),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: 150,
-                      height: 150,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.network(
-                          CustomWeatherIconsModel.getWeatherIcon(
-                            currentWeather.icon,
+                    Column(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            height: 130,
+                            width: 140,
+                            child: Image.network(
+                              CustomWeatherIconsModel.getWeatherIcon(
+                                currentWeather.weather![0].icon,
+                              ),
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                          fit: BoxFit.contain,
                         ),
-                      ),
+                        Text(
+                          "${(currentWeather.main!.temp! - 273.15).toStringAsFixed(1)}°C",
+                          style: Theme.of(context).textTheme.headlineSmall!
+                              .copyWith(color: AppColors.white),
+                        ),
+                      ],
                     ),
                   ],
                 ),
