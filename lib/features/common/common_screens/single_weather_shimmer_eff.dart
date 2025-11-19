@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:weather_app/core/utils/themes/app_colors.dart';
 
 class SingleWeatherShimmerEff extends StatelessWidget {
   const SingleWeatherShimmerEff({super.key});
@@ -10,14 +9,17 @@ class SingleWeatherShimmerEff extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Shimmer.fromColors(
-        baseColor: AppColors.primaryColor,
-        highlightColor: AppColors.secondaryColor,
+        baseColor: Theme.of(context).colorScheme.primary,
+        highlightColor: Theme.of(context).colorScheme.secondary,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: AppColors.secondaryColor,
+            color: Theme.of(context).colorScheme.secondary,
             gradient: LinearGradient(
-              colors: [AppColors.secondaryColor, AppColors.primaryColor],
+              colors: [
+                Theme.of(context).colorScheme.secondary,
+                Theme.of(context).colorScheme.primary,
+              ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),

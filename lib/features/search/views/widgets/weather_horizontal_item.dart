@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/core/utils/themes/app_colors.dart';
 import 'package:weather_app/features/common/common_screens/single_weather_shimmer_eff.dart';
 import 'package:weather_app/features/home/models/custom_weather_icons_model.dart';
 import 'package:weather_app/features/home/views_models/current_weather_cubit/current_weather_cubit.dart';
@@ -29,10 +28,16 @@ class WeatherHorizontalItem extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color: AppColors.secondaryColor,
-                border: Border.all(color: AppColors.white, width: 1.5),
+                color: Theme.of(context).colorScheme.secondary,
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  width: 1.5,
+                ),
                 gradient: LinearGradient(
-                  colors: [AppColors.secondaryColor, AppColors.primaryColor],
+                  colors: [
+                    Theme.of(context).colorScheme.secondary,
+                    Theme.of(context).colorScheme.primary,
+                  ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
@@ -51,17 +56,29 @@ class WeatherHorizontalItem extends StatelessWidget {
                           Text(
                             searchedCityDetails.state ?? '',
                             style: Theme.of(context).textTheme.headlineSmall!
-                                .copyWith(color: AppColors.white),
+                                .copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                ),
                           ),
                           Text(
                             searchedCityDetails.name ?? '',
                             style: Theme.of(context).textTheme.headlineLarge!
-                                .copyWith(color: AppColors.white),
+                                .copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                ),
                           ),
                           Text(
                             currentWeather.weather![0].main ?? '',
                             style: Theme.of(context).textTheme.headlineSmall!
-                                .copyWith(color: AppColors.white),
+                                .copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                ),
                           ),
                         ],
                       ),
@@ -83,7 +100,9 @@ class WeatherHorizontalItem extends StatelessWidget {
                         Text(
                           "${(currentWeather.main!.temp! - 273.15).toStringAsFixed(1)}°C",
                           style: Theme.of(context).textTheme.headlineSmall!
-                              .copyWith(color: AppColors.white),
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
                         ),
                       ],
                     ),

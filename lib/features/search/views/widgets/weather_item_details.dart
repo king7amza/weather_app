@@ -20,7 +20,10 @@ class WeatherItemDetails extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [AppColors.primaryColor, AppColors.secondaryColor],
+          colors: [
+            Theme.of(context).colorScheme.primary,
+            Theme.of(context).colorScheme.secondary,
+          ],
         ),
       ),
       child: Scaffold(
@@ -28,18 +31,24 @@ class WeatherItemDetails extends StatelessWidget {
           backgroundColor: AppColors.transparent,
           title: Text(
             '${cityDetails?.name} Weather',
-            style: Theme.of(
-              context,
-            ).textTheme.headlineLarge!.copyWith(color: AppColors.white),
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
           ),
           leading: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: AppColors.white, width: 1.5),
-              color: AppColors.primaryColor,
+              border: Border.all(
+                color: Theme.of(context).colorScheme.onPrimary,
+                width: 1.5,
+              ),
+              color: Theme.of(context).colorScheme.primary,
             ),
             child: IconButton(
-              icon: const Icon(Icons.arrow_back, color: AppColors.white),
+              icon: Icon(
+                Icons.arrow_back,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
               onPressed: () => Navigator.pop(context),
             ),
           ),
@@ -92,14 +101,22 @@ class WeatherItemDetails extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .displayLarge!
-                                      .copyWith(color: AppColors.white),
+                                      .copyWith(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
+                                      ),
                                 ),
                                 Text(
                                   "°C",
                                   style: Theme.of(context)
                                       .textTheme
                                       .displayLarge!
-                                      .copyWith(color: AppColors.gold),
+                                      .copyWith(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.tertiary,
+                                      ),
                                 ),
                               ],
                             ),
@@ -144,8 +161,8 @@ class WeatherItemDetails extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(30),
                                 gradient: LinearGradient(
                                   colors: [
-                                    AppColors.secondaryColor,
-                                    AppColors.primaryColor,
+                                    Theme.of(context).colorScheme.secondary,
+                                    Theme.of(context).colorScheme.primary,
                                   ],
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
@@ -159,7 +176,11 @@ class WeatherItemDetails extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineLarge!
-                                        .copyWith(color: AppColors.white),
+                                        .copyWith(
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onPrimary,
+                                        ),
                                   ),
                                   const SizedBox(height: 17),
                                   Row(
@@ -170,7 +191,11 @@ class WeatherItemDetails extends StatelessWidget {
                                         style: Theme.of(context)
                                             .textTheme
                                             .headlineSmall!
-                                            .copyWith(color: AppColors.white),
+                                            .copyWith(
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.onPrimary,
+                                            ),
                                       ),
                                       const SizedBox(width: 10),
                                       Text(
@@ -178,7 +203,11 @@ class WeatherItemDetails extends StatelessWidget {
                                         style: Theme.of(context)
                                             .textTheme
                                             .headlineSmall!
-                                            .copyWith(color: AppColors.white),
+                                            .copyWith(
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.onPrimary,
+                                            ),
                                       ),
                                       const SizedBox(width: 10),
                                       Text(
@@ -186,7 +215,11 @@ class WeatherItemDetails extends StatelessWidget {
                                         style: Theme.of(context)
                                             .textTheme
                                             .headlineSmall!
-                                            .copyWith(color: AppColors.white),
+                                            .copyWith(
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.onPrimary,
+                                            ),
                                       ),
                                     ],
                                   ),

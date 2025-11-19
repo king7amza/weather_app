@@ -1,16 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/utils/themes/app_colors.dart';
 
-class AppTheams {
-  static ThemeData get mainTheme => ThemeData(
+class AppThemes {
+  static ThemeData primaryMode = ThemeData(
+    colorScheme: ColorScheme.light(
+      primary: AppColors.primaryColor,
+      onPrimary: AppColors.white,
+      secondary: AppColors.secondaryColor,
+      onSurface: AppColors.grey,
+      error: AppColors.errorColor,
+      tertiary: AppColors.gold,
+    ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: AppColors.primaryColor,
-      selectionColor: AppColors.primaryColor,
+      selectionColor: AppColors.secondaryColor,
       selectionHandleColor: AppColors.primaryColor,
     ),
   );
+  static ThemeData lightMode = ThemeData(
+    colorScheme: ColorScheme.light(
+      primary: AppColors.white,
+      onPrimary: AppColors.black,
+      secondary: AppColors.secondaryColor,
+      onSurface: AppColors.grey,
+      error: AppColors.errorColor,
+      tertiary: AppColors.gold,
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.white,
+      selectionColor: AppColors.secondaryColor,
+      selectionHandleColor: AppColors.white,
+    ),
+  );
+  static ThemeData darkMode = ThemeData(
+    colorScheme: ColorScheme.dark(
+      primary: AppColors.black,
+      secondary: AppColors.secondaryColor,
+      onPrimary: AppColors.white,
+      onSurface: AppColors.grey,
+      error: AppColors.errorColor,
+      tertiary: AppColors.gold,
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.black,
+      selectionColor: AppColors.secondaryColor,
+      selectionHandleColor: AppColors.black,
+    ),
+  );
 }
-
-ColorScheme colorScheme = ColorScheme.fromSeed(
-  seedColor: AppColors.primaryColor,
-);

@@ -36,7 +36,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     countryController: countryController,
                     stateController: stateController,
                     searchCubit: searchCubit,
-                    searchBackgroundColor: AppColors.grey,
                     onPressed: () {},
                   ),
                   const SizedBox(height: 20),
@@ -55,7 +54,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     countryController: countryController,
                     stateController: stateController,
                     searchCubit: searchCubit,
-                    searchBackgroundColor: AppColors.primaryColor,
                     onPressed: () {
                       final String searchText =
                           "${cityController.text},${stateController.text},${countryController.text}";
@@ -149,7 +147,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     countryController: countryController,
                     stateController: stateController,
                     searchCubit: searchCubit,
-                    searchBackgroundColor: AppColors.primaryColor,
                     onPressed: () {
                       final String searchText =
                           "${cityController.text},${stateController.text},${countryController.text}";
@@ -187,7 +184,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     countryController: countryController,
                     stateController: stateController,
                     searchCubit: searchCubit,
-                    searchBackgroundColor: AppColors.primaryColor,
                     onPressed: () {
                       final String searchText =
                           "${cityController.text},${stateController.text},${countryController.text}";
