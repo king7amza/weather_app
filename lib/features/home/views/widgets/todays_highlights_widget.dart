@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/core/utils/themes/app_colors.dart';
 import 'package:weather_app/features/home/models/current_weather_response_model.dart';
 
 class CarouselHighlightsCases {
@@ -74,7 +73,14 @@ class TodaysHighlightsWidget extends StatelessWidget {
       height: size.height * 0.26,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color: AppColors.primaryColor,
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).colorScheme.secondary,
+            Theme.of(context).colorScheme.primary,
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +98,9 @@ class TodaysHighlightsWidget extends StatelessWidget {
                   : Text(
                       title!,
                       style: Theme.of(context).textTheme.headlineLarge!
-                          .copyWith(color: AppColors.white),
+                          .copyWith(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                     ),
             ],
           ),
@@ -104,14 +112,18 @@ class TodaysHighlightsWidget extends StatelessWidget {
                   : Text(
                       secondvalue!,
                       style: Theme.of(context).textTheme.headlineSmall!
-                          .copyWith(color: AppColors.white),
+                          .copyWith(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                     ),
               thirdvalue == null
                   ? SizedBox.shrink()
                   : Text(
                       thirdvalue!,
                       style: Theme.of(context).textTheme.headlineSmall!
-                          .copyWith(color: AppColors.white),
+                          .copyWith(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
                     ),
             ],
           ),
@@ -120,9 +132,9 @@ class TodaysHighlightsWidget extends StatelessWidget {
               ? SizedBox.shrink()
               : Text(
                   mainvalue!,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.headlineSmall!.copyWith(color: AppColors.white),
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
         ],
       ),

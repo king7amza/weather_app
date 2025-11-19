@@ -32,13 +32,13 @@ class HomeScreen extends StatelessWidget {
                 Icon(
                   Icons.error,
                   size: size.width * 0.1,
-                  color: AppColors.errorColor,
+                  color: Theme.of(context).colorScheme.error,
                 ),
                 Text(
                   state.message,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.headlineLarge!.copyWith(color: AppColors.white),
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.error,
+                  ),
                 ),
               ],
             ),
@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                             width: size.width * 0.7,
                             height: size.height * 0.07,
                             decoration: BoxDecoration(
-                              color: AppColors.secondaryColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Center(
@@ -72,7 +72,11 @@ class HomeScreen extends StatelessWidget {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineLarge!
-                                    .copyWith(color: AppColors.white),
+                                    .copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
+                                    ),
                               ),
                             ),
                           ),
@@ -93,12 +97,20 @@ class HomeScreen extends StatelessWidget {
                                 ((currentWeather.main!.temp)! - 273.15)
                                     .toStringAsFixed(1),
                                 style: Theme.of(context).textTheme.displayLarge!
-                                    .copyWith(color: AppColors.white),
+                                    .copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
+                                    ),
                               ),
                               Text(
                                 "°C",
                                 style: Theme.of(context).textTheme.displayLarge!
-                                    .copyWith(color: AppColors.gold),
+                                    .copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.tertiary,
+                                    ),
                               ),
                             ],
                           ),
@@ -106,7 +118,11 @@ class HomeScreen extends StatelessWidget {
                           Text(
                             "${currentWeather.weather!.first.main}",
                             style: Theme.of(context).textTheme.headlineLarge!
-                                .copyWith(color: AppColors.white),
+                                .copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                ),
                           ),
                         ],
                       ),
@@ -118,7 +134,9 @@ class HomeScreen extends StatelessWidget {
                       child: Text(
                         "Today’s Highlights",
                         style: Theme.of(context).textTheme.headlineLarge!
-                            .copyWith(color: AppColors.white),
+                            .copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
                       ),
                     ),
                     Positioned(
@@ -142,9 +160,9 @@ class HomeScreen extends StatelessWidget {
           return Center(
             child: Text(
               'Wow such empty !',
-              style: Theme.of(
-                context,
-              ).textTheme.headlineLarge!.copyWith(color: AppColors.white),
+              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                color: Theme.of(context).colorScheme.error,
+              ),
             ),
           );
         }
@@ -152,23 +170,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-/*
-CarouselSlider(
-  options: CarouselOptions(height: 400.0),
-  items: [1,2,3,4,5].map((i) {
-    return Builder(
-      builder: (BuildContext context) {
-        return Container(
-          width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.symmetric(horizontal: 5.0),
-          decoration: BoxDecoration(
-            color: Colors.amber
-          ),
-          child: Text('text $i', style: TextStyle(fontSize: 16.0),)
-        );
-      },
-    );
-  }).toList(),
-)
- */

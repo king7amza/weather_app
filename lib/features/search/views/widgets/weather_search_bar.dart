@@ -7,13 +7,11 @@ class WeatherSearchBar extends StatelessWidget {
   final TextEditingController? countryController;
   final TextEditingController? stateController;
   final SearchCubit searchCubit;
-  final Color searchBackgroundColor;
   final void Function() onPressed;
   const WeatherSearchBar({
     super.key,
     required this.cityController,
     required this.searchCubit,
-    required this.searchBackgroundColor,
     required this.onPressed,
     this.countryController,
     this.stateController,
@@ -26,9 +24,12 @@ class WeatherSearchBar extends StatelessWidget {
         children: [
           TextFormField(
             controller: cityController,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
             decoration: InputDecoration(
               filled: true,
-              fillColor: AppColors.white,
+              fillColor: Theme.of(context).colorScheme.primary,
               border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 borderSide: BorderSide.none,
@@ -54,17 +55,22 @@ class WeatherSearchBar extends StatelessWidget {
                 borderSide: BorderSide.none,
               ),
               hintText: 'Enter City',
-              hintStyle: const TextStyle(color: AppColors.grey),
+              hintStyle: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
               suffixIcon: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: searchBackgroundColor,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                   child: IconButton(
                     onPressed: onPressed,
-                    icon: const Icon(Icons.search, color: AppColors.white),
+                    icon: Icon(
+                      Icons.search,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
               ),
@@ -72,24 +78,29 @@ class WeatherSearchBar extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Theme(
-            data: Theme.of(context).copyWith(
-              dividerColor: Colors.transparent,
-            ),
+            data: Theme.of(
+              context,
+            ).copyWith(dividerColor: AppColors.transparent),
             child: ExpansionTile(
-              title: const Text(
+              title: Text(
                 'more options',
-                style: TextStyle(color: AppColors.white),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
               ),
-              trailing: const Icon(
+              trailing: Icon(
                 Icons.keyboard_arrow_down,
-                color: AppColors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               children: [
                 TextFormField(
                   controller: stateController,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: AppColors.white,
+                    fillColor: Theme.of(context).colorScheme.primary,
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       borderSide: BorderSide.none,
@@ -115,15 +126,20 @@ class WeatherSearchBar extends StatelessWidget {
                       borderSide: BorderSide.none,
                     ),
                     hintText: 'Enter State',
-                    hintStyle: const TextStyle(color: AppColors.grey),
+                    hintStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: countryController,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: AppColors.white,
+                    fillColor: Theme.of(context).colorScheme.primary,
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       borderSide: BorderSide.none,
@@ -149,7 +165,9 @@ class WeatherSearchBar extends StatelessWidget {
                       borderSide: BorderSide.none,
                     ),
                     hintText: 'Enter Country ISO code',
-                    hintStyle: const TextStyle(color: AppColors.grey),
+                    hintStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 ),
               ],
