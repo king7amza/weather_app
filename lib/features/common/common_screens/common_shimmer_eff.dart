@@ -11,7 +11,7 @@ class CommonShimmerEff extends StatelessWidget {
       baseColor: Theme.of(context).colorScheme.primary,
       highlightColor: Theme.of(context).colorScheme.secondary,
       child: Image.asset(
-        'assets/images/shimmer_eff_img.png',
+        'assets/images/logo.png',
         width: 400,
         height: 400,
         fit: BoxFit.contain,

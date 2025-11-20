@@ -26,14 +26,6 @@ class SingleWeatherShimmerEff extends StatelessWidget {
           ),
           height: 140,
           width: double.infinity,
-          child: Center(
-            child: Image.asset(
-              'assets/images/wow_such_empty.png',
-              width: 100,
-              height: 100,
-              fit: BoxFit.contain,
-            ),
-          ),
         ),
       ),
     );

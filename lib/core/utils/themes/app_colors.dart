@@ -8,5 +8,10 @@ class AppColors {
   static const Color gold = Colors.amber;
   static const Color white = Colors.white;
   static const Color black = Colors.black;
+  static const Color cyan = Colors.cyan;
+  static const Color pink = Colors.pink;
+  static const Color brown = Colors.brown;
+  static const Color orange = Colors.deepOrangeAccent;
+  static Color lightRed = Colors.red.shade200;
   static Color errorColor = Colors.red.shade700;
 }

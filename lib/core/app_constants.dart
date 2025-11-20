@@ -4,4 +4,5 @@ class AppConstants {
   static const String baseUrl = "https://api.openweathermap.org";
   static const String currentCityWeatherEndpoint = "/data/2.5/weather";
   static const String searchCityEndpoint = "/geo/1.0/direct";
+  static const String currentTheme = "current_theme";
 }

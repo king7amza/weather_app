@@ -1,6 +1,7 @@
 name: weather_app
-description: "this is a weather app to show the weather of any city and search
-  for any city in the world and show the current weather of that city you live
+description: "this is a weather app to show the weather just by search
+  for any city in the world and show the weather details of that 
+  city and also show the current weather details of that city you live
   in."
 
 publish_to: "none"
@@ -17,13 +18,21 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_launcher_icons: ^0.14.4
   geolocator: ^14.0.2
+  shared_preferences: ^2.5.3
   shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  web: true
+  image_path: "assets/images/logo.png"
 
 flutter:
   uses-material-design: true

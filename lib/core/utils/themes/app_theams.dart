@@ -47,4 +47,49 @@ class AppThemes {
       selectionHandleColor: AppColors.black,
     ),
   );
+  static ThemeData darkCyanMode = ThemeData(
+    colorScheme: ColorScheme.dark(
+      primary: AppColors.black,
+      secondary: AppColors.cyan,
+      onPrimary: AppColors.white,
+      onSurface: AppColors.grey,
+      error: AppColors.errorColor,
+      tertiary: AppColors.gold,
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.black,
+      selectionColor: AppColors.cyan,
+      selectionHandleColor: AppColors.black,
+    ),
+  );
+  static ThemeData pinkMode = ThemeData(
+    colorScheme: ColorScheme.dark(
+      primary: AppColors.pink,
+      secondary: AppColors.lightRed,
+      onPrimary: AppColors.white,
+      onSurface: AppColors.grey,
+      error: AppColors.errorColor,
+      tertiary: AppColors.gold,
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.black,
+      selectionColor: AppColors.lightRed,
+      selectionHandleColor: AppColors.black,
+    ),
+  );
+  static ThemeData brownMode = ThemeData(
+    colorScheme: ColorScheme.dark(
+      primary: AppColors.brown,
+      secondary: AppColors.orange,
+      onPrimary: AppColors.white,
+      onSurface: AppColors.grey,
+      error: AppColors.errorColor,
+      tertiary: AppColors.gold,
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.black,
+      selectionColor: AppColors.orange,
+      selectionHandleColor: AppColors.black,
+    ),
+  );
 }
