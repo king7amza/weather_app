@@ -8,7 +8,7 @@ import 'package:weather_app/features/search/view_models/search_cubit/search_cubi
 import 'package:weather_app/features/search/views/screens/search_screen.dart';
 
 class IndexedStackNavBar extends StatefulWidget {
-  final void Function(ThemeData) changeTheme;
+  final void Function(String) changeTheme;
   const IndexedStackNavBar({super.key, required this.changeTheme});
 
   @override

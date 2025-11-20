@@ -133,124 +133,115 @@ class WeatherItemDetails extends StatelessWidget {
             ),
             Positioned(
               bottom: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                  color: AppColors.white,
+              right: size.width * 0.03,
+              left: size.width * 0.03,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 20,
                 ),
-                height: 500,
-                width: size.width,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 20,
-                  ),
-                  child: Column(
-                    children: [
-                      cityDetails?.localNames?["zh"] == null &&
-                              cityDetails?.localNames?["en"] == null &&
-                              cityDetails?.localNames?["ar"] == null
-                          ? Container()
-                          : Container(
-                              width: double.infinity,
-                              height: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Theme.of(context).colorScheme.secondary,
-                                    Theme.of(context).colorScheme.primary,
-                                  ],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                ),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Names of the city",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineLarge!
-                                        .copyWith(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.onPrimary,
-                                        ),
-                                  ),
-                                  const SizedBox(height: 17),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "( ${(cityDetails?.localNames?["en"] ?? "")} , ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineSmall!
-                                            .copyWith(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.onPrimary,
-                                            ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        "${cityDetails?.localNames?["ar"] ?? ""} , ",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineSmall!
-                                            .copyWith(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.onPrimary,
-                                            ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        "${cityDetails?.localNames?["zh"] ?? ""} )",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headlineSmall!
-                                            .copyWith(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.onPrimary,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
+                child: Column(
+                  children: [
+                    cityDetails?.localNames?["zh"] == null &&
+                            cityDetails?.localNames?["en"] == null &&
+                            cityDetails?.localNames?["ar"] == null
+                        ? Container()
+                        : Container(
+                            width: double.infinity,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Theme.of(context).colorScheme.secondary,
+                                  Theme.of(context).colorScheme.primary,
                                 ],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
                               ),
                             ),
-                      const SizedBox(height: 20),
-                      BlocBuilder<CurrentWeatherCubit, CurrentWeatherState>(
-                        bloc: currentWeatherCubit,
-                        buildWhen: (previous, current) =>
-                            current is CurrentWeatherLoaded ||
-                            current is CurrentWeatherError ||
-                            current is CurrentWeatherLoading,
-                        builder: (context, state) {
-                          if (state is CurrentWeatherLoading) {
-                            return const Center(
-                              child: SingleWeatherShimmerEff(),
-                            );
-                          } else if (state is CurrentWeatherLoaded) {
-                            final currentWeather = state.currentWeatherResponse;
-                            return CarouselHighlightsWidget(
-                              currentWeather: currentWeather,
-                            );
-                          } else if (state is CurrentWeatherError) {
-                            return Text(state.message);
-                          }
-                          return Container();
-                        },
-                      ),
-                    ],
-                  ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Names of the city",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge!
+                                      .copyWith(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onPrimary,
+                                      ),
+                                ),
+                                const SizedBox(height: 17),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "( ${(cityDetails?.localNames?["en"] ?? "")} , ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall!
+                                          .copyWith(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
+                                          ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      "${cityDetails?.localNames?["ar"] ?? ""} , ",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall!
+                                          .copyWith(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
+                                          ),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      "${cityDetails?.localNames?["zh"] ?? ""} )",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall!
+                                          .copyWith(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                    const SizedBox(height: 20),
+                    BlocBuilder<CurrentWeatherCubit, CurrentWeatherState>(
+                      bloc: currentWeatherCubit,
+                      buildWhen: (previous, current) =>
+                          current is CurrentWeatherLoaded ||
+                          current is CurrentWeatherError ||
+                          current is CurrentWeatherLoading,
+                      builder: (context, state) {
+                        if (state is CurrentWeatherLoading) {
+                          return const Center(
+                            child: SingleWeatherShimmerEff(),
+                          );
+                        } else if (state is CurrentWeatherLoaded) {
+                          final currentWeather = state.currentWeatherResponse;
+                          return CarouselHighlightsWidget(
+                            currentWeather: currentWeather,
+                          );
+                        } else if (state is CurrentWeatherError) {
+                          return Text(state.message);
+                        }
+                        return Container();
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
