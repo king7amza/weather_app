@@ -8,8 +8,7 @@ import 'package:weather_app/features/search/view_models/search_cubit/search_cubi
 import 'package:weather_app/features/search/views/screens/search_screen.dart';
 
 class IndexedStackNavBar extends StatefulWidget {
-  final void Function(String) changeTheme;
-  const IndexedStackNavBar({super.key, required this.changeTheme});
+  const IndexedStackNavBar({super.key,});
 
   @override
   State<IndexedStackNavBar> createState() => IndexedStackNavBarState();
@@ -85,7 +84,7 @@ class IndexedStackNavBarState extends State<IndexedStackNavBar> {
                 ),
           resizeToAvoidBottomInset: false,
           backgroundColor: AppColors.transparent,
-          drawer: currentIndex == 0 ? ThemeDrawer(changeTheme: widget.changeTheme,) : null,
+          drawer: currentIndex == 0 ? ThemeDrawer() : null,
           body: IndexedStack(
             index: currentIndex,
             children: [const HomeScreen(), const SearchScreen()],
