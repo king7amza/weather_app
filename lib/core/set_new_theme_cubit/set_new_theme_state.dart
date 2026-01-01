@@ -10,6 +10,6 @@ final class SetNewThemeChanged extends SetNewThemeState {
 }
 
 final class GetCurrentTheme extends SetNewThemeState {
-  final String currentTheme;
+  final ThemeData currentTheme;
   GetCurrentTheme({required this.currentTheme});
 }
