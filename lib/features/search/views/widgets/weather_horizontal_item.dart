@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/features/common/common_screens/single_weather_shimmer_eff.dart';
+import 'package:weather_app/core/weather_shimmer_effect_widget.dart';
 import 'package:weather_app/features/home/models/custom_weather_icons_model.dart';
 import 'package:weather_app/features/home/views_models/current_weather_cubit/current_weather_cubit.dart';
 import 'package:weather_app/features/search/models/search_api_response.dart';
@@ -20,7 +20,7 @@ class WeatherHorizontalItem extends StatelessWidget {
           current is CurrentWeatherLoading,
       builder: (context, state) {
         if (state is CurrentWeatherLoading) {
-          return const Center(child: SingleWeatherShimmerEff());
+          return const Center(child: WeatherShimmerEffectWidget());
         } else if (state is CurrentWeatherLoaded) {
           final currentWeather = state.currentWeatherResponse;
           return Padding(

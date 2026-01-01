@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/core/utils/themes/app_colors.dart';
-import 'package:weather_app/features/common/common_screens/common_shimmer_eff.dart';
+import 'package:weather_app/core/shimmer_effect_widget.dart';
 import 'package:weather_app/features/home/views_models/current_weather_cubit/current_weather_cubit.dart';
 import 'package:weather_app/features/search/view_models/search_cubit/search_cubit.dart';
 import 'package:weather_app/features/search/views/widgets/weather_horizontal_item.dart';
@@ -39,7 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     onPressed: () {},
                   ),
                   const SizedBox(height: 20),
-                  Expanded(child: const Center(child: CommonShimmerEff())),
+                  Expanded(child: const Center(child: ShimmerEffectWidget())),
                 ],
               ),
             );
@@ -73,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineLarge!
-                                    .copyWith(color: AppColors.white),
+                                    .copyWith(color: AppColors.lightWhite),
                               ),
                               const SizedBox(height: 20),
                               Image.asset(
@@ -166,7 +166,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         Text(
                           state.message,
                           style: Theme.of(context).textTheme.headlineLarge!
-                              .copyWith(color: AppColors.white),
+                              .copyWith(color: AppColors.lightWhite),
                         ),
                       ],
                     ),

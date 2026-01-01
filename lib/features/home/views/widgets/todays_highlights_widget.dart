@@ -70,7 +70,7 @@ class TodaysHighlightsWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5.0),
       width: size.width * 0.8,
-      height: size.height * 0.26,
+      height: size.height * 0.4,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         gradient: LinearGradient(
@@ -82,61 +82,70 @@ class TodaysHighlightsWidget extends StatelessWidget {
           end: Alignment.centerRight,
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final boxSize = constraints.biggest;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                width: size.width * 0.2,
-                height: size.width * 0.2,
-                child: Image.asset(iconPath!, fit: BoxFit.contain),
-              ),
-              title == null
-                  ? SizedBox.shrink()
-                  : Text(
-                      title!,
-                      style: Theme.of(context).textTheme.headlineLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                    ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              secondvalue == null
-                  ? SizedBox.shrink()
-                  : Text(
-                      secondvalue!,
-                      style: Theme.of(context).textTheme.headlineSmall!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                    ),
-              thirdvalue == null
-                  ? SizedBox.shrink()
-                  : Text(
-                      thirdvalue!,
-                      style: Theme.of(context).textTheme.headlineSmall!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
-                    ),
-            ],
-          ),
-          SizedBox(height: size.width * 0.06),
-          mainvalue == null
-              ? SizedBox.shrink()
-              : Text(
-                  mainvalue!,
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    width: boxSize.width * 0.1,
+                    height: boxSize.width * 0.1,
+                    child: Image.asset(iconPath!, fit: BoxFit.contain),
                   ),
-                ),
-        ],
+                  title == null
+                      ? SizedBox.shrink()
+                      : Text(
+                          title!,
+                          style: Theme.of(context).textTheme.headlineLarge!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontSize: boxSize.height * 0.1,
+                              ),
+                        ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  secondvalue == null
+                      ? SizedBox.shrink()
+                      : Text(
+                          secondvalue!,
+                          style: Theme.of(context).textTheme.headlineSmall!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontSize: boxSize.height * 0.1,
+                              ),
+                        ),
+                  thirdvalue == null
+                      ? SizedBox.shrink()
+                      : Text(
+                          thirdvalue!,
+                          style: Theme.of(context).textTheme.headlineSmall!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                                fontSize: boxSize.height * 0.1,
+                              ),
+                        ),
+                ],
+              ),
+              SizedBox(height: boxSize.height * 0.06),
+              mainvalue == null
+                  ? SizedBox.shrink()
+                  : Text(
+                      mainvalue!,
+                      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        fontSize: boxSize.height * 0.1,
+                      ),
+                    ),
+            ],
+          );
+        }
       ),
     );
   }
