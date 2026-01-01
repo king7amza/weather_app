@@ -7,6 +7,7 @@ class AppColors {
   static const Color transparent = Colors.transparent;
   static const Color gold = Colors.amber;
   static const Color white = Colors.white;
+  static Color lightWhite = Colors.white54;
   static const Color black = Colors.black;
   static const Color cyan = Colors.cyan;
   static const Color pink = Colors.pink;

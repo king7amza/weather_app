@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/app_constants.dart';
 import 'package:weather_app/core/utils/themes/app_theams.dart';
-import 'package:weather_app/features/common/common_screens/indexed_stack_nav_bar.dart';
-import 'package:weather_app/features/common/common_services/local_database_services.dart';
+import 'package:weather_app/core/indexed_stack_nav_bar.dart';
+import 'package:weather_app/core/local_database_services.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -59,7 +59,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       debugShowCheckedModeBanner: false,
       title: AppConstants.appName,
       theme: currentTheme,
