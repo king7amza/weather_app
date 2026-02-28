@@ -2,7 +2,7 @@
 
 A simple and modern **Flutter** application that displays the current weather of your location  
 and allows you to search for the weather in any city around the world.
-
+try web version https://weather-app-web-be41d.web.app/
 ---
 
 ## 🚀 Features
